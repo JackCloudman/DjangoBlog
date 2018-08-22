@@ -19,7 +19,6 @@ from django.conf.urls import url, include
 from markdownx import urls as markdownx
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
-urlpatterns += [
-    url(r'^markdownx/', include(markdownx))
+    url(r'^markdownx/', include(markdownx)),
+    url(r'', include('apps.blog.urls'))
 ]

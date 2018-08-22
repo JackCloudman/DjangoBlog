@@ -26,7 +26,7 @@ class Post(models.Model):
         self.fecha_creado = timezone.now()
         self.save()
     def formatted_markdown(self):
-        return markdownify(self.text)
+        return markdownify(self.contenido)
     '''def get_description(self):
         text = markdownify(self.text)
         cleanr = re.compile('<.*?>')
