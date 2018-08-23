@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+    <link rel="icon" href="/static/img/icon.jpg">
     <style type="text/css">
 .responsive{
     width: 100%;
@@ -60,7 +61,7 @@
     {% if post.foto_encabezado %}
     <header class="masthead" style="background-image: url('/{{post.foto_encabezado}}')">
 {% else %}
-    <header class="masthead" style="background-image: url('/static/img/post-bg.jpg')">
+    <header class="masthead" style="background-image: url('/static/img/default_post.jpg')">
 
 {% endif %}
       <div class="overlay"></div>

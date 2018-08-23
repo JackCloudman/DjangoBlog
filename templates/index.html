@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/clean-blog.min.css" rel="stylesheet">
-
+    <link rel="icon" href="/static/img/icon.jpg">
   </head>
 
   <body>
@@ -28,7 +28,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="index.html">JackCloudman</a>
+        <a class="navbar-brand" href="/">JackCloudman</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -70,7 +70,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           {%for post in posts%}
           <div class="post-preview">
-            <a href="#">
+            <a href="{% url 'post_detail' pk=post.pk %}">
               <h2 class="post-title">
                 {{post.titulo}}
               </h2>
@@ -85,10 +85,18 @@
           <hr>
           {%endfor%}
           <!-- Pager -->
-          <!--
           <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>-->
+            {%if post_recientes%}
+            {%if not anterior%}
+                <a class="btn btn-primary float-left" href="/">Post recientes&larr;</a>
+            {%else%}
+                <a class="btn btn-primary float-left" href="/page/{{anterior}}">Post recientes&larr;</a>
+            {%endif%}
+            {%endif%}
+            {%if post_antiguos%}
+            <a class="btn btn-primary float-right" href="/page/{{siguiente}}">Post antiguos &rarr;</a>
+            {%endif%}  
+        </div>
         </div>
       </div>
     </div>
