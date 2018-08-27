@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.template.defaultfilters import slugify
 import hashlib,os
 from tagging.fields import TagField
 from markdownx.models import MarkdownxField
@@ -15,6 +16,7 @@ def update_filename(instance, filename):
 class Post(models.Model):
     autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=200)
+    slug = models.SlugField(blank=True,null=True)
     descripcion = models.CharField(max_length=200)
     foto_encabezado = models.ImageField(upload_to=update_filename,null=True,blank=True)
     contenido = MarkdownxField()
@@ -23,6 +25,8 @@ class Post(models.Model):
     tags = TagField(null=True)
     @property
     def publicar(self):
+        if not self.slug:
+            self.slug = slugify(self.titulo)
         self.fecha_creado = timezone.now()
         self.save()
     def formatted_markdown(self):
