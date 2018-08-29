@@ -4,9 +4,9 @@ from django.utils import timezone
 def home(request,page=0):
     page = int(page)
     if page==0:
-        posts = Post.objects.filter(fecha_publicado__lte=timezone.now()).exclude(slug__exact=None)[:4]
+        posts = Post.objects.filter(fecha_publicado__lte=timezone.now()).exclude(slug__exact=None).order_by('-fecha_publicado')[:4]
     else:
-        posts = Post.objects.filter(fecha_publicado__lte=timezone.now()).exclude(slug__exact=None)[page*4:page*4+4]
+        posts = Post.objects.filter(fecha_publicado__lte=timezone.now()).exclude(slug__exact=None).order_by('-fecha_publicado')[page*4:page*4+4]
     
     total = len(Post.objects.filter(fecha_publicado__lte=timezone.now()))
     post_antiguos = (page*4+4) <=total

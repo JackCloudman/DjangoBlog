@@ -21,6 +21,19 @@
     <!-- Custom styles for this template -->
     <link href="/static/css/clean-blog.min.css" rel="stylesheet">
     <link rel="icon" href="/static/img/icon.jpg">
+    <style type="text/css">
+      .search{
+        height: 100%;
+      }
+      #sicon{
+        height: 100%;
+        font-size: 12px;
+        padding-left: 10px;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 10px;
+      }
+    </style>
   </head>
 
   <body>
@@ -44,6 +57,14 @@
             <li class="nav-item">
               <a class="nav-link" href="https://t.me/JackCloudman">Contacto</a>
             </li>
+            <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control search" placeholder="Buscar" name="q">
+            <div class="input-group-btn">
+                <button class="btn btn-default rounded-right" type="submit" id="sicon"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        </form>
           </ul>
         </div>
       </div>
