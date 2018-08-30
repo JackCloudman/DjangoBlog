@@ -57,9 +57,9 @@
             <li class="nav-item">
               <a class="nav-link" href="https://t.me/JackCloudman">Contacto</a>
             </li>
-            <form class="navbar-form" role="search" method="GET" action="/search">
+            <form class="navbar-form" role="search" action="/search">
         <div class="input-group">
-            <input type="text" class="form-control search" placeholder="Buscar" name="q">
+            <input type="text" class="form-control search" placeholder="Buscar" name="q" value="{{request.GET.q}}">
             <div class="input-group-btn">
                 <button class="btn btn-default rounded-right" type="submit" id="sicon"><i class="fa fa-search"></i></button>
             </div>
@@ -89,6 +89,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+          {%if not posts%}
+          <h1>Sin resultados para: {{request.GET.q}}</h1>
+          {%endif%}
           {%for post in posts%}
           <div class="post-preview">
             <a href="{% url 'post_detail' pk=post.pk title=post.slug %}">
@@ -108,14 +111,10 @@
           <!-- Pager -->
           <div class="clearfix">
             {%if post_recientes%}
-            {%if not anterior%}
-                <a class="btn btn-primary float-left" href="/">Post recientes&larr;</a>
-            {%else%}
-                <a class="btn btn-primary float-left" href="/page/{{anterior}}">Post recientes&larr;</a>
-            {%endif%}
+                <a class="btn btn-primary float-left" href="?page={{anterior}}&q={{request.GET.q}}">Post recientes&larr;</a>
             {%endif%}
             {%if post_antiguos%}
-            <a class="btn btn-primary float-right" href="/page/{{siguiente}}">Post antiguos &rarr;</a>
+            <a class="btn btn-primary float-right" href="?page={{siguiente}}&q={{request.GET.q}}">Post antiguos &rarr;</a>
             {%endif%}  
         </div>
         </div>
