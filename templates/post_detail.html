@@ -7,8 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>JackCloudman | {{post.titulo}}</title>
+    <meta property="og:description" content="{{post.descripcion}}">
+    {% if post.foto_encabezado %}
+    <meta property="og:image" content="/{{post.foto_encabezado}}">
+    {% else %}
+    <meta property="og:image" content="/static/img/default_post.jpg">
+    {% endif %}
+     
+    <title>{{post.titulo}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
