@@ -13,7 +13,7 @@
     {% else %}
     <meta property="og:image" content="/static/img/default_post.jpg">
     {% endif %}
-     
+
     <title>{{post.titulo}}</title>
 
     <!-- Bootstrap core CSS -->
@@ -82,23 +82,13 @@
     </nav>
 
     <!-- Page Header -->
-    
-    {% if post.foto_encabezado %}
-    <header class="masthead" style="background-image: url('/{{post.foto_encabezado}}')">
-{% else %}
-    <header class="masthead" style="background-image: url('/static/img/default_post.jpg')">
-
-{% endif %}
-      <div class="overlay"></div>
+    <header class="masthead">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-heading">
-              <h1>{{post.titulo}}</h1>
-              <h2 class="subheading">{{post.descripcion}}</h2>
-              <span class="meta">Publicado por
-                <a href="#">{{post.autor|title}}</a>
-                el {{post.fecha_publicado}}</span>
+          <div class="col-lg-8 col-md-10 mx-auto" style="max-height: 80px;">
+            <div class="post-heading"><!--
+
+              -->
             </div>
           </div>
         </div>
@@ -109,7 +99,10 @@
     <article>
       <div class="container custom">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto" style="text-align: justify;">
+          <div class="col-lg-10 col-md-10 mx-auto" style="text-align: justify;">
+            <h1>{{post.titulo}}</h1><span class="meta">Publicado por
+              <i class="fa fa-user"></i> <a href="#">{{post.autor|title}}</a>
+              el {{post.fecha_publicado}}</span>
             {{ post.formatted_markdown|safe }}
           </div>
         </div>
