@@ -24,9 +24,9 @@ def search_list(request):
         return redirect("/")
     posts = Post.objects.filter(fecha_publicado__lte=timezone.now()).exclude(slug__exact=None)
     posts = posts.filter(
-                        Q(titulo__icontains=query) | 
+                        Q(titulo__icontains=query) |
                         Q(descripcion__icontains=query) |
-                        Q(tags__icontains=query) | 
+                        Q(tags__icontains=query) |
                         Q(contenido__icontains=query) |
                         Q(autor__first_name__icontains=query) |
                         Q(autor__last_name__icontains=query)).distinct().order_by('-fecha_publicado')
@@ -53,8 +53,8 @@ def post_detail(request, pk,title=None):
     post = post[0]
     if not title or title!=post.slug:
         return redirect("/post/%s/%s/"%(pk,post.slug))
+    post.post_views=post.post_views+1
+    post.save()
     return render(request, 'post_detail.html', {'post': post})
 def error_404(request):
     return page_not_found(request, '404.html')
-
-

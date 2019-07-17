@@ -23,6 +23,7 @@ class Post(models.Model):
     fecha_creado = models.DateTimeField(default=timezone.now)
     fecha_publicado = models.DateTimeField(blank=True,null=True)
     tags = TagField(null=True)
+    post_views=models.IntegerField(default=0)
     @property
     def publicar(self):
         if not self.slug:
